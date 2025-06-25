@@ -2,18 +2,12 @@ package jm.task.core.jdbc.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    public UserDaoHibernateImpl() {
-
-    }
-
-
     @Override
     public void createUsersTable() {
         String sql = """
@@ -76,7 +70,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Transaction tx = null;
         try (Session session = Util.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            User user = (User) session.get(User.class, id);
+            User user = session.get(User.class, id);
             if (user != null) {
                 session.remove(user);
             }

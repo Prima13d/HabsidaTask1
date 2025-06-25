@@ -15,6 +15,10 @@ public class Util {
     private static final String PASSWORD = "25626034be";
     public static SessionFactory sessionFactory;
 
+    private Util() {
+        throw new UnsupportedOperationException("Util class should not be instantiated");
+    }
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             Configuration config = new Configuration();
